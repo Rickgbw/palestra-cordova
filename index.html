@@ -45,7 +45,7 @@
 			img {
 				border: none !important;
 				background-color: transparent !important;
-				box-shadow: none: !important;
+				box-shadow: none !important;
 			}
 	    </style>
 
@@ -77,41 +77,73 @@
 					</p>
 				</section>
 
-				<section data-background="#7C0101">
+				<section data-background="#660000">
 					<section>
-						<h2>Onrizon</h2>
+						<h2><img src="imgs/onrizon-logo.png" /></h2>
 						<p></p>
 						<p>
 							<ul>
 								<li>Fundada em 2012</li>
 								<li>Backend em Node.js</li>
+								<li>Tecnologias: Grunt, Jade, Stylus, Socket.io</li>
 								<li>Apps desenvolvidos em cordova para iOS, Android, WP8 e Firefox OS</li>
-								<li>Mais de 1 Milhão de downloads</li>
 							</ul>
 						</p>
 						<p><a href="http://www.onrizon.com.br/">www.onrizon.com.br</a></p>
 					</section>
-					<section data-background="#017C01">
+					<section data-background="#006600">
 						<h2>BuracoON</h2>
-						<p><a href="http://www.buracoon.com.br/">www.buracoon.com.br</a></p>
+						<p>
+							<img src="imgs/buracoon.png" style="float: left;" />
+							<ul style="max-width: 60%; margin-top: 50px;">
+								<li>Lançado em março de 2012</li>
+								<li>Primeiro jogo de buraco online para smartphones</li>
+								<li>70% do publico italiano</li>
+								<li>Web, iOS, Android, WP8 e Firefox OS</li>
+								<li>Mais de 1 milhão de downloads</li>
+								<li>Mais de 250 mil cadastros</li>
+							</ul>
+						</p>
 					</section>
-					<section data-background="#017C01">
+					<section data-background="#006600">
 						<h2>TrucoON</h2>
-						<p><a href="http://www.trucoon.com.br/">www.trucoon.com.br</a></p>
+						<p>
+							<img src="imgs/trucoon.png" style="float: left;" />
+							<ul style="max-width: 60%; margin-top: 98px;">
+								<li>Lançado em agosto de 2012</li>
+								<li>Jogo número 1 de truco no iOS</li>
+								<li>iOS, Android, WP8 e Firefox OS</li>
+								<li>Mais de 150 mil cadastros</li>
+							</ul>
+						</p>
 					</section>
 				</section>
 
 				<section data-background="#003E7D">
-					<h2>Gartic</h2>
-					<p>
-						<ul>
-							<li>Fundada em 2008</li>
-							<li>Backend em PHP</li>
-							<li>App criado em dezembro de 2013 para iOS, Android, WP8 e Firefox OS</li>
-							<li>Mais de 1 Milhão de downloads</li>
-						</ul>
-					</p>
-					<p><a href="http://www.gartic.com.br/">www.gartic.com.br</a></p>
+					<section>
+						<h2><img src="imgs/gartic-logo.png" /></h2>
+						<p>
+							<ul>
+								<li>Fundada em 2008</li>
+								<li>Backend em PHP</li>
+								<li>Média de 70 mil visitas diárias</li>
+								<li>Mais de 2 milhões de pageviews por mês</li>
+								<li>Um milhão de cadastros</li>
+							</ul>
+						</p>
+						<p><a href="http://www.gartic.com.br/">www.gartic.com.br</a></p>
+					</section>
+					<section>
+						<h2>Gartic App</h2>
+						<p>
+							<img src="imgs/gartic.png" style="float: left;" />
+							<ul style="max-width: 60%; margin-top: 95px;">
+								<li>Aplicativo lançado em dezembro de 2013</li>
+								<li>Plataformas: Android, iOS, WP8 e Firefox OS</li>
+								<li>Mais de 1 milhão de downloads</li>
+							</ul>
+						</p>
+					</section>
 				</section>
 
 				<section>
@@ -189,7 +221,7 @@ cordova run ios --device
 						<h2>Configuração</h2>
 						<ul>
 							<li>Estrutura do projeto em <strong>www</strong></li>
-							<li>Inclusão do <strong>cordova.js</strong> e listar evento <strong>deviceready</strong>
+							<li>Inclusão do <strong>cordova.js</strong> e capturar evento <strong>deviceready</strong>
 							<pre><code class="html" data-trim contenteditable>
 &lt;script src="cordova.js"&gt;&lt;/script&gt;
 						</code></pre></li>
@@ -291,8 +323,8 @@ io.on('connection', function(socket){
 	socket.on('disconnect', function(msg){
 	});
 
-	socket.on('mensagem', function(msg){
-		socket.emit('mensagem',msg);
+	socket.on('ping', function(msg){
+		socket.emit('ping',msg);
 	});
 });
 						</code></pre>
@@ -307,16 +339,16 @@ io.on('connection', function(socket){
 	var socket = io('http://localhost:6969');
 	socket.on('connect',function() {
 		//conectado
-
-		socket.emit('mensagem',{ val: 'Teste' });
 	});
 
 	socket.on('disconnect',function() {
 		//desconectado
 	});
 
-	socket.on('mensagem',function() {
+	socket.on('ping',function(msg) {
+		alert(msg.val);
 	});	
+	socket.emit('ping',{ val: 'Teste' });
 &lt;/script&gt;
 						</code></pre>
 						<p><a href="http://socket.io/">http://socket.io/</a></p>
@@ -348,10 +380,10 @@ Reveal.toggleOverview();
 						<h2>HTML5</h2>
 						<p>
 							<ul>
-								<li class="fragment">Websockets</li>
-								<li class="fragment">Device Orientation</li>
 								<li class="fragment">Vibration</li>
 								<li class="fragment">Canvas</li>
+								<li class="fragment">Device Orientation</li>	
+								<li class="fragment">Websockets</li>
 								<li class="fragment">WebRTC</li>
 								<li class="fragment">CSS transitions/animations</li>
 								<li class="fragment">Media Queries</li>
@@ -361,22 +393,16 @@ Reveal.toggleOverview();
 					</section>
 					<section>
 						<h2>Device Orientation</h2>
+						<p>Capturando evento</p>
 						<pre><code class="javascript" data-trim contenteditable>
-window.addEventListener("deviceorientation", handleOrientationEvent, false);
-
-function handleOrientationEvent(event) {
+var a, b, g;
+function callback(event) {
     a = event.alpha;
     b = event.beta;
     g = event.gamma;
-
-    if(initialA !== null) {
-    	var dif = initialA - a;
-    	if(Math.abs(dif) >= 22.5) {
-			if(dif < 0) initialA -= dif + 22.5;
-			else  initialA -= dif - 22.5;
-    	}
-    }
 }
+
+window.addEventListener("deviceorientation", callback, false);
 
 						</code></pre>
 					</section>
